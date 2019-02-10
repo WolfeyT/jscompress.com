@@ -1,7 +1,5 @@
-import { transform as babiliTransform } from 'babili-standalone';
-import { useECMAScriptNext } from './use-ecmascript-next';
-import UglifyJS from './uglify-js-browser';
+import { transform } from '@babel/standalone';
 
 export default function minify(code) {
-  return useECMAScriptNext ? babiliTransform(code).code : UglifyJS.minify(code).code;
+  return transform(code, { presets: ['minify'] }).code;
 }

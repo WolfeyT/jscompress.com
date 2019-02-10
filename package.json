@@ -1,15 +1,12 @@
 {
   "name": "jscompress.com",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "private": true,
   "description": "The JavaScript Compression Tool",
   "main": "index.js",
   "browserslist": "> 0.25%, not dead",
   "scripts": {
     "test": "npm run lint",
-    "compile-uglifyjs": "uglifyjs --self -c -m -o ./node_modules/uglify-js/uglify-js-browser.js",
-    "install": "rimraf uglify-js-next && npm install github:mishoo/UglifyJS2#harmony --prefix uglify-js-next",
-    "postinstall": "npm run compile-uglifyjs",
     "bundle": "NODE_ENV=production webpack --config ./tools/webpack.config.babel.js --mode production",
     "dev": "NODE_ENV=development PORT=8089 webpack-dev-server --config tools/webpack.config.babel.js --mode development",
     "upgrade": "ncu --upgradeAll && npm install",
@@ -60,9 +57,8 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
-    "babel-standalone": "^6.26.0",
-    "babili-standalone": "^0.0.10",
-    "exports-loader": "^0.7.0",
+    "@babel/standalone": "^7.3.2",
+    "babel-preset-minify": "^0.5.0",
     "lodash.round": "^4.0.4",
     "matreshka": "^2.4.0",
     "matreshka-binders-file": "0.0.2",

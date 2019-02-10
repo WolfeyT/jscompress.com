@@ -1,15 +1,17 @@
 import MatreshkaObject from 'matreshka/object';
+import minify from 'babel-preset-minify';
+import { registerPreset } from '@babel/standalone';
 import Upload from './tabs/upload';
 import CopyPaste from './tabs/copy-paste';
 import Output from './tabs/output';
-import { setUseECMAScriptNext } from './util/use-ecmascript-next';
+
+registerPreset('minify', minify);
 
 class Application extends MatreshkaObject {
   constructor() {
     super()
       .set({
-        activeTabName: 'upload',
-        useECMAScriptNext: !!localStorage.useECMAScriptNext
+        activeTabName: 'upload'
       })
       .addDataKeys(['upload', 'copyPaste', 'output'])
       .instantiate({
@@ -17,18 +19,6 @@ class Application extends MatreshkaObject {
         copyPaste: CopyPaste,
         output: Output
       })
-      .bindNode('useECMAScriptNext', '.use-ecmascript-next')
-      .on('change:useECMAScriptNext', () => {
-        const { useECMAScriptNext } = this;
-
-        setUseECMAScriptNext(useECMAScriptNext);
-
-        if (useECMAScriptNext) {
-          localStorage.useECMAScriptNext = 'y';
-        } else {
-          delete localStorage.useECMAScriptNext;
-        }
-      }, true)
       .on({
         '*@change:active': (evt) => {
           if (evt.value === true) {
@@ -47,4 +37,4 @@ class Application extends MatreshkaObject {
   }
 }
 
-module.exports = new Application();
+export default new Application();
