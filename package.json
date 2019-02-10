@@ -9,7 +9,8 @@
     "test": "npm run lint",
     "bundle": "NODE_ENV=production webpack --config ./tools/webpack.config.babel.js --mode production",
     "dev": "NODE_ENV=development PORT=8089 webpack-dev-server --config tools/webpack.config.babel.js --mode development",
-    "upgrade": "ncu --upgradeAll && npm install",
+    "upgrade": "ncu -a && npm i",
+    "reinstall": "rm -rf node_modules package-lock.json && npm i",
     "lint": "eslint . --ext .js --cache --ignore-pattern '**/node_modules/**' --ignore-pattern '**/dist/**'",
     "deploy": "pm2 deploy ecosystem.json production --force",
     "stylelint": "stylelint css/style.css"
@@ -51,7 +52,6 @@
     "style-loader": "^0.23.1",
     "stylelint": "^9.10.1",
     "stylelint-config-standard": "^18.2.0",
-    "uglifyjs-webpack-plugin": "^2.1.1",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14"
@@ -61,8 +61,7 @@
     "babel-preset-minify": "^0.5.0",
     "lodash.round": "^4.0.4",
     "matreshka": "^2.4.0",
-    "matreshka-binders-file": "0.0.2",
-    "uglify-js": "^3.4.9"
+    "matreshka-binders-file": "0.0.2"
   },
   "peerDependencies": {
     "pm2": "^1.1.3"
